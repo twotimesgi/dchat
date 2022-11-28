@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi"
 import styles from "./InputBox.module.css"
 import ContractABI from "../abis/chat.json"
+import SendIcon from "../public/send-icon.svg"
+import Image from "next/image"
 export default function InputBox() {
 
   const [message, setMessage] = useState("");
@@ -27,6 +29,7 @@ export default function InputBox() {
   
   return <div className={styles.inputBox}>
     <input className={styles.msgInput} onKeyDown={handleSubmit}  placeholder="Write a message..." value={message} type="text" disabled={isLoading || isLoadingTx} onChange={(e) => setMessage(e.target.value)}/>
+    <button onClick={handleSubmit} disabled={message.length < 1} className={styles.sendButton}><Image src={SendIcon} alt="send icon"/></button>
   </div>
 
 }
