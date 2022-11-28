@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useAccount } from 'wagmi'
-import InputBox from '../components/InputBox'
 
 export default function Home() {
   const { address, isConnected } = useAccount()
@@ -15,6 +14,11 @@ export default function Home() {
   )
   const MessageBox = dynamic(
     () => import('../components/MessageBox'),
+    { ssr: false }
+  )
+
+  const InputBox = dynamic(
+    () => import('../components/InputBox'),
     { ssr: false }
   )
   return (
