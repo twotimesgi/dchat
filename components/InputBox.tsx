@@ -20,15 +20,18 @@ export default function InputBox() {
   const { isSuccess, isLoading: isLoadingTx } = useWaitForTransaction({
     hash: data?.hash,
   })
+  const handleEnter = (e : any) => {
+    if(e.key != "Enter" ) return;
+    handleSubmit();
+  }
 
-  const handleSubmit =  async (event: any) => {
-    if(event.key != "Enter") return;
+  const handleSubmit =  async () => {
     setMessage("");
     write?.()
   }
   
   return <div className={styles.inputBox}>
-    <input className={styles.msgInput} onKeyDown={handleSubmit}  placeholder="Write a message..." value={message} type="text" disabled={isLoading || isLoadingTx} onChange={(e) => setMessage(e.target.value)}/>
+    <input className={styles.msgInput} onKeyDown={handleEnter}  placeholder="Write a message..." value={message} type="text" disabled={isLoading || isLoadingTx} onChange={(e) => setMessage(e.target.value)}/>
     <button onClick={handleSubmit} disabled={message.length < 1} className={styles.sendButton}><Image src={SendIcon} alt="send icon"/></button>
   </div>
 
