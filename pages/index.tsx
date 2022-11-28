@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import Image from 'next/image'
 import { useAccount } from 'wagmi'
 import InputBox from '../components/InputBox'
 

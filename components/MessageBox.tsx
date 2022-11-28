@@ -21,6 +21,7 @@ export default function MessageBox(props : {address: string | undefined}) {
 
 
     useEffect(() => {   
+        if(data == undefined) return;
         let tempMessages : Message[] = [];     
         (data as any).map((msg : any) =>{
            let newMessage : Message = {
