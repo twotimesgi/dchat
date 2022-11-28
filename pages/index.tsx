@@ -3,8 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useAccount } from 'wagmi'
 import InputBox from '../components/InputBox'
-import MessageBox from '../components/MessageBox'
-import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const { address, isConnected } = useAccount()
@@ -14,6 +12,10 @@ export default function Home() {
   )
   const StatusBar = dynamic(
     () => import('../components/StatusBar'),
+    { ssr: false }
+  )
+  const MessageBox = dynamic(
+    () => import('../components/MessageBox'),
     { ssr: false }
   )
   return (
